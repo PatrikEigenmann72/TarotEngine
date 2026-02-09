@@ -1,5 +1,6 @@
 .vscode/
 bin/
+build/
 *.exe
 *.dll
 *.so
@@ -13,5 +14,6 @@ build/
 *.class
 *.o
 *.obj
+*.db
 .DS_Store
 sources.txt

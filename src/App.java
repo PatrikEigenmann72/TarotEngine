@@ -19,13 +19,12 @@
  * Change Log:
  * Wed 2026-02-04 File created.                                     Version: 00.01
  * ------------------------------------------------------------------------------- */
-
-/* Javax Swing SwingUtilities import */ 
-import javax.swing.SwingUtilities;
-
 /* TarotEngine Gui MainFrame import */
-import TarotEngine.Gui.MainFrame;
-import TarotEngine.Utility.Debug;
+import tarotengine.gui.*;
+import javax.swing.SwingUtilities;
+import samael.huginandmunin.*;
+import samael.chronicle.Config;
+import samael.necronomicon.ResourceLoader;
 
 /**
  * App.java -  The App class serves as the entry point for the application. When
@@ -60,9 +59,36 @@ public class App {
      *             typically not required in standard executions.
      */
     public static void main(String[] args) {
-        Debug.init(Debug.NONE);
+
+        String msg1;
+
+        Debug.init(args);
+        Log.init(Config.getString("App.LogName"));
+
+        Debug.setBitmask(Debug.DebugLevel.All.value);
+        Log.setBitmask(Log.LogLevel.All.value);
+
+        msg1 = "Starting " + Config.getString("App.Name") + " " + Config.getString("App.Version");
+        Debug.writeLine(Debug.DebugLevel.Info, msg1, "App");
+        Log.writeLine(Log.LogLevel.Info, msg1, "App");
+        
+        // Using SwingUtilities.invokeLater to start a
+        // Swing application as background task.
         SwingUtilities.invokeLater(() -> {
+            String msg2 = "Launching main frame.";
+            Debug.writeLine(Debug.DebugLevel.Info, msg2, "App");
+            Log.writeLine(Log.LogLevel.Info, msg2, "App");
+
             MainFrame mf = new MainFrame();
+            
+            msg2 = "Loading application icon: " + Config.getString("App.IconName");
+            Debug.writeLine(Debug.DebugLevel.Info, msg2, "App");
+            Log.writeLine(Log.LogLevel.Info, msg2, "App");
+            mf.setIconImage(ResourceLoader.loadIcon(Config.getString("App.IconName")));
+            
+            msg2 = "Making main frame visible.";
+            Debug.writeLine(Debug.DebugLevel.Info, msg2, "App");
+            Log.writeLine(Log.LogLevel.Info, msg2, "App");
             mf.setVisible(true);
         });
     }
