@@ -2,13 +2,16 @@
 -- INSTALL SCRIPT (DEVELOPMENT / FIRST RUN)
 -- ============================
 
-DROP TABLE IF EXISTS association;
-DROP TABLE IF EXISTS association_type;
-DROP TRIGGER IF EXISTS card_image_default;
+DROP TABLE IF EXISTS archetype;
 DROP TABLE IF EXISTS card;
 DROP TABLE IF EXISTS deck;
-DROP TABLE IF EXISTS archetype;
+DROP TABLE IF EXISTS association;
+DROP TABLE IF EXISTS association_type;
 DROP TABLE IF EXISTS config;
+DROP TABLE IF EXISTS settings;
+DROP INDEX IF EXISTS idx_assoc_type;
+DROP INDEX IF EXISTS idx_assoc_archetype;
+DROP INDEX IF EXISTS idx_assoc_card;
 
 -- ============================
 -- 1. ARCHETYPE (STATIC)
@@ -171,397 +174,397 @@ CREATE TABLE card (
 
 -- Tarot of the Vampyres — Major Arcana
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Fool', a.number || '_The Fool.png'
+SELECT d.id, a.id, 'The Fool', a.number || ' - The Fool.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='00';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Magician', a.number || '_The Magician.png'
+SELECT d.id, a.id, 'The Magician', a.number || ' - The Magician.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='01';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The High Priestess', a.number || '_The High Priestess.png'
+SELECT d.id, a.id, 'The High Priestess', a.number || ' - The High Priestess.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='02';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Empress', a.number || '_The Empress.png'
+SELECT d.id, a.id, 'The Empress', a.number || ' - The Empress.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='03';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Emperor', a.number || '_The Emperor.png'
+SELECT d.id, a.id, 'The Emperor', a.number || ' - The Emperor.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='04';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Hierophant', a.number || '_The Hierophant.png'
+SELECT d.id, a.id, 'The Hierophant', a.number || ' - The Hierophant.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='05';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Lovers', a.number || '_The Lovers.png'
+SELECT d.id, a.id, 'The Lovers', a.number || ' - The Lovers.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='06';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Chariot', a.number || '_The Chariot.png'
+SELECT d.id, a.id, 'The Chariot', a.number || ' - The Chariot.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='07';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Strength', a.number || '_Strength.png'
+SELECT d.id, a.id, 'Strength', a.number || ' - Strength.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='08';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Hermit', a.number || '_The Hermit.png'
+SELECT d.id, a.id, 'The Hermit', a.number || ' - The Hermit.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='09';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Wheel of Fortune', a.number || '_Wheel of Fortune.png'
+SELECT d.id, a.id, 'Wheel of Fortune', a.number || ' - Wheel of Fortune.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='10';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Justice', a.number || '_Justice.png'
+SELECT d.id, a.id, 'Justice', a.number || ' - Justice.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='11';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Hanged Man', a.number || '_The Hanged Man.png'
+SELECT d.id, a.id, 'The Hanged Man', a.number || ' - The Hanged Man.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='12';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Death', a.number || '_Death.png'
+SELECT d.id, a.id, 'Death', a.number || ' - Death.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='13';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Temperance', a.number || '_Temperance.png'
+SELECT d.id, a.id, 'Temperance', a.number || ' - Temperance.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='14';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Devil', a.number || '_The Devil.png'
+SELECT d.id, a.id, 'The Devil', a.number || ' - The Devil.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='15';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Tower', a.number || '_The Tower.png'
+SELECT d.id, a.id, 'The Tower', a.number || ' - The Tower.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='16';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Star', a.number || '_The Star.png'
+SELECT d.id, a.id, 'The Star', a.number || ' - The Star.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='17';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Moon', a.number || '_The Moon.png'
+SELECT d.id, a.id, 'The Moon', a.number || ' - The Moon.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='18';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The Sun', a.number || '_The Sun.png'
+SELECT d.id, a.id, 'The Sun', a.number || ' - The Sun.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='19';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Judgement', a.number || '_Judgement.png'
+SELECT d.id, a.id, 'Judgement', a.number || ' - Judgement.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='20';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'The World', a.number || '_The World.png'
+SELECT d.id, a.id, 'The World', a.number || ' - The World.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='21';
 
 -- Tarot of the Vampyres — Scepters (Wands)
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Ace of Scepters', a.number || '_Ace of Scepters.png'
+SELECT d.id, a.id, 'Ace of Scepters', a.number || ' - Ace of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='22';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Two of Scepters', a.number || '_Two of Scepters.png'
+SELECT d.id, a.id, 'Two of Scepters', a.number || ' - Two of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='23';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Three of Scepters', a.number || '_Three of Scepters.png'
+SELECT d.id, a.id, 'Three of Scepters', a.number || ' - Three of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='24';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Four of Scepters', a.number || '_Four of Scepters.png'
+SELECT d.id, a.id, 'Four of Scepters', a.number || ' - Four of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='25';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Five of Scepters', a.number || '_Five of Scepters.png'
+SELECT d.id, a.id, 'Five of Scepters', a.number || ' - Five of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='26';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Six of Scepters', a.number || '_Six of Scepters.png'
+SELECT d.id, a.id, 'Six of Scepters', a.number || ' - Six of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='27';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Seven of Scepters', a.number || '_Seven of Scepters.png'
+SELECT d.id, a.id, 'Seven of Scepters', a.number || ' - Seven of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='28';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Eight of Scepters', a.number || '_Eight of Scepters.png'
+SELECT d.id, a.id, 'Eight of Scepters', a.number || ' - Eight of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='29';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Nine of Scepters', a.number || '_Nine of Scepters.png'
+SELECT d.id, a.id, 'Nine of Scepters', a.number || ' - Nine of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='30';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Ten of Scepters', a.number || '_Ten of Scepters.png'
+SELECT d.id, a.id, 'Ten of Scepters', a.number || ' - Ten of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='31';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Daughter of Scepters', a.number || '_Daughter of Scepters.png'
+SELECT d.id, a.id, 'Daughter of Scepters', a.number || ' - Daughter of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='32';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Prince of Scepters', a.number || '_Prince of Scepters.png'
+SELECT d.id, a.id, 'Prince of Scepters', a.number || ' - Prince of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='33';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Queen of Scepters', a.number || '_Queen of Scepters.png'
+SELECT d.id, a.id, 'Queen of Scepters', a.number || ' - Queen of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='34';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Lord of Scepters', a.number || '_Lord of Scepters.png'
+SELECT d.id, a.id, 'Lord of Scepters', a.number || ' - Lord of Scepters.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='35';
 
 
 -- Tarot of the Vampyres — Grails (Cups)
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Ace of Grails', a.number || '_Ace of Grails.png'
+SELECT d.id, a.id, 'Ace of Grails', a.number || ' - Ace of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='36';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Two of Grails', a.number || '_Two of Grails.png'
+SELECT d.id, a.id, 'Two of Grails', a.number || ' - Two of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='37';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Three of Grails', a.number || '_Three of Grails.png'
+SELECT d.id, a.id, 'Three of Grails', a.number || ' - Three of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='38';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Four of Grails', a.number || '_Four of Grails.png'
+SELECT d.id, a.id, 'Four of Grails', a.number || ' - Four of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='39';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Five of Grails', a.number || '_Five of Grails.png'
+SELECT d.id, a.id, 'Five of Grails', a.number || ' - Five of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='40';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Six of Grails', a.number || '_Six of Grails.png'
+SELECT d.id, a.id, 'Six of Grails', a.number || ' - Six of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='41';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Seven of Grails', a.number || '_Seven of Grails.png'
+SELECT d.id, a.id, 'Seven of Grails', a.number || ' - Seven of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='42';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Eight of Grails', a.number || '_Eight of Grails.png'
+SELECT d.id, a.id, 'Eight of Grails', a.number || ' - Eight of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='43';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Nine of Grails', a.number || '_Nine of Grails.png'
+SELECT d.id, a.id, 'Nine of Grails', a.number || ' - Nine of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='44';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Ten of Grails', a.number || '_Ten of Grails.png'
+SELECT d.id, a.id, 'Ten of Grails', a.number || ' - Ten of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='45';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Daughter of Grails', a.number || '_Daughter of Grails.png'
+SELECT d.id, a.id, 'Daughter of Grails', a.number || ' - Daughter of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='46';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Prince of Grails', a.number || '_Prince of Grails.png'
+SELECT d.id, a.id, 'Prince of Grails', a.number || ' - Prince of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='47';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Queen of Grails', a.number || '_Queen of Grails.png'
+SELECT d.id, a.id, 'Queen of Grails', a.number || ' - Queen of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='48';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Lord of Grails', a.number || '_Lord of Grails.png'
+SELECT d.id, a.id, 'Lord of Grails', a.number || ' - Lord of Grails.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='49';
 
 -- Tarot of the Vampyres — Knives (Swords)
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Ace of Knives', a.number || '_Ace of Knives.png'
+SELECT d.id, a.id, 'Ace of Knives', a.number || ' - Ace of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='50';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Two of Knives', a.number || '_Two of Knives.png'
+SELECT d.id, a.id, 'Two of Knives', a.number || ' - Two of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='51';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Three of Knives', a.number || '_Three of Knives.png'
+SELECT d.id, a.id, 'Three of Knives', a.number || ' - Three of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='52';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Four of Knives', a.number || '_Four of Knives.png'
+SELECT d.id, a.id, 'Four of Knives', a.number || ' - Four of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='53';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Five of Knives', a.number || '_Five of Knives.png'
+SELECT d.id, a.id, 'Five of Knives', a.number || ' - Five of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='54';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Six of Knives', a.number || '_Six of Knives.png'
+SELECT d.id, a.id, 'Six of Knives', a.number || ' - Six of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='55';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Seven of Knives', a.number || '_Seven of Knives.png'
+SELECT d.id, a.id, 'Seven of Knives', a.number || ' - Seven of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='56';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Eight of Knives', a.number || '_Eight of Knives.png'
+SELECT d.id, a.id, 'Eight of Knives', a.number || ' - Eight of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='57';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Nine of Knives', a.number || '_Nine of Knives.png'
+SELECT d.id, a.id, 'Nine of Knives', a.number || ' - Nine of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='58';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Ten of Knives', a.number || '_Ten of Knives.png'
+SELECT d.id, a.id, 'Ten of Knives', a.number || ' - Ten of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='59';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Daughter of Knives', a.number || '_Daughter of Knives.png'
+SELECT d.id, a.id, 'Daughter of Knives', a.number || ' - Daughter of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='60';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Prince of Knives', a.number || '_Prince of Knives.png'
+SELECT d.id, a.id, 'Prince of Knives', a.number || ' - Prince of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='61';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Queen of Knives', a.number || '_Queen of Knives.png'
+SELECT d.id, a.id, 'Queen of Knives', a.number || ' - Queen of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='62';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Lord of Knives', a.number || '_Lord of Knives.png'
+SELECT d.id, a.id, 'Lord of Knives', a.number || ' - Lord of Knives.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='63';
 
 -- Tarot of the Vampyres — Skulls (Pentacles)
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Ace of Skulls', a.number || '_Ace of Skulls.png'
+SELECT d.id, a.id, 'Ace of Skulls', a.number || ' - Ace of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='64';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Two of Skulls', a.number || '_Two of Skulls.png'
+SELECT d.id, a.id, 'Two of Skulls', a.number || ' - Two of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='65';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Three of Skulls', a.number || '_Three of Skulls.png'
+SELECT d.id, a.id, 'Three of Skulls', a.number || ' - Three of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='66';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Four of Skulls', a.number || '_Four of Skulls.png'
+SELECT d.id, a.id, 'Four of Skulls', a.number || ' - Four of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='67';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Five of Skulls', a.number || '_Five of Skulls.png'
+SELECT d.id, a.id, 'Five of Skulls', a.number || ' - Five of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='68';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Six of Skulls', a.number || '_Six of Skulls.png'
+SELECT d.id, a.id, 'Six of Skulls', a.number || ' - Six of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='69';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Seven of Skulls', a.number || '_Seven of Skulls.png'
+SELECT d.id, a.id, 'Seven of Skulls', a.number || ' - Seven of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='70';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Eight of Skulls', a.number || '_Eight of Skulls.png'
+SELECT d.id, a.id, 'Eight of Skulls', a.number || ' - Eight of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='71';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Nine of Skulls', a.number || '_Nine of Skulls.png'
+SELECT d.id, a.id, 'Nine of Skulls', a.number || ' - Nine of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='72';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Ten of Skulls', a.number || '_Ten of Skulls.png'
+SELECT d.id, a.id, 'Ten of Skulls', a.number || ' - Ten of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='73';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Daughter of Skulls', a.number || '_Daughter of Skulls.png'
+SELECT d.id, a.id, 'Daughter of Skulls', a.number || ' - Daughter of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='74';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Prince of Skulls', a.number || '_Prince of Skulls.png'
+SELECT d.id, a.id, 'Prince of Skulls', a.number || ' - Prince of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='75';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Queen of Skulls', a.number || '_Queen of Skulls.png'
+SELECT d.id, a.id, 'Queen of Skulls', a.number || ' - Queen of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='76';
 
 INSERT INTO card (deck_id, archetype_id, name, image)
-SELECT d.id, a.id, 'Lord of Skulls', a.number || '_Lord of Skulls.png'
+SELECT d.id, a.id, 'Lord of Skulls', a.number || ' - Lord of Skulls.png'
 FROM deck d, archetype a
 WHERE d.short='TOV' AND a.number='77';
 
@@ -591,10 +594,10 @@ CREATE TABLE association (
 );
 
 -- ============================
--- 6. CONFIG (APP SETTINGS)
+-- 6. SETTING (APP SETTINGS)
 -- ============================
 
-CREATE TABLE config (
+CREATE TABLE settings (
     id        INTEGER PRIMARY KEY AUTOINCREMENT,
     sort      TEXT NOT NULL,
     key       TEXT NOT NULL,
